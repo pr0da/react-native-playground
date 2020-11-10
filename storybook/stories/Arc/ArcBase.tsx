@@ -3,8 +3,8 @@ import { View, ViewStyle, StyleProp, Platform } from 'react-native';
 import { Svg, Path, G } from 'react-native-svg';
 import Animated, {
   useDerivedValue,
-  useAnimatedStyle,
   useAnimatedProps,
+  useAnimatedStyle,
 } from 'react-native-reanimated';
 
 const AnimatedG = Animated.createAnimatedComponent(G);
@@ -38,7 +38,11 @@ export default function AnimatedArc(props: Props) {
   const animatedStyle = useAnimatedStyle(() => {
     const r = typeof rotation === 'number' ? rotation : rotation?.value ?? 0;
     return {
-      transform: [{ rotate: `${r}deg` }],
+      transform: [
+        {
+          rotate: `${r}deg`,
+        },
+      ],
     };
   });
   const innerRadius = diameter / 2 - width / 2;
@@ -90,13 +94,13 @@ export default function AnimatedArc(props: Props) {
   }));
 
   return (
-    <View style={style}>
+    <Animated.View style={[style, animatedStyle]}>
       <Svg
         width={diameter}
         height={diameter}
         viewBox={`${-pivot} ${-pivot} ${diameter} ${diameter}`}
       >
-        <AnimatedG style={animatedStyle}>
+        <AnimatedG>
           <AnimatedPath
             animatedProps={animatedProps}
             strokeWidth={width}
@@ -106,6 +110,6 @@ export default function AnimatedArc(props: Props) {
           />
         </AnimatedG>
       </Svg>
-    </View>
+    </Animated.View>
   );
 }
