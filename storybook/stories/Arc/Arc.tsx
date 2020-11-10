@@ -9,8 +9,8 @@ type Props = Omit<ReanimatedArcBaseProps, 'arcSweepAngle' | 'rotation'> & {
   arcSweepAngle: number;
   rotation: number;
   initialAnimation: boolean;
-  animationDuration: number;
-  easing: Reanimated.EasingFunction;
+  animationDuration?: number;
+  easing?: Reanimated.EasingFunction;
 };
 
 function Arc(props: Props) {
