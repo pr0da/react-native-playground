@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, ViewStyle, StyleProp, Platform } from 'react-native';
+import { ViewStyle, StyleProp } from 'react-native';
 import { Svg, Path, G } from 'react-native-svg';
 import Animated, {
   useDerivedValue,
