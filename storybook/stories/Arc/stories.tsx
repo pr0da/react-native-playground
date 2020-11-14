@@ -4,6 +4,7 @@ import Logo from './Logo';
 import RandomArc from './RandomArc';
 import Donut from './Donut';
 import Slider from './Slider';
+import Stopwatch from './Stopwatch';
 import CenterView from '../CenterView';
 
 storiesOf('Arc', module)
@@ -11,4 +12,5 @@ storiesOf('Arc', module)
   .add('Logo', () => <Logo />)
   .add('RandomArc', () => <RandomArc />)
   .add('Donut', () => <Donut />)
-  .add('Slider', () => <Slider />);
+  .add('Slider', () => <Slider />)
+  .add('Stopwatch', () => <Stopwatch />);
