@@ -6,6 +6,7 @@ import Donut from './Donut';
 import Slider from './Slider';
 import Stopwatch from './Stopwatch';
 import CenterView from '../CenterView';
+import Progress from './Progress';
 
 storiesOf('Arc', module)
   .addDecorator((story) => <CenterView>{story() as any}</CenterView>)
@@ -13,4 +14,5 @@ storiesOf('Arc', module)
   .add('RandomArc', () => <RandomArc />)
   .add('Donut', () => <Donut />)
   .add('Slider', () => <Slider />)
-  .add('Stopwatch', () => <Stopwatch />);
+  .add('Stopwatch', () => <Stopwatch />)
+  .add('Progress', () => <Progress />);
