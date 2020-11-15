@@ -1,60 +1,75 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, View, StyleSheet } from 'react-native';
-import Arc from './Arc';
+import {
+  useDerivedValue,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
+import ArcBase from './ArcBase';
 
+const spaceBetweenArcs = 20;
 const generateValues = () => {
-  const initialRotation = Math.random() * 120 - 60;
-  const spaceBetweenArcs = 20;
   const firstSecondRatio = Math.random() * 75;
-  const first = {
-    arc: Math.random() * 50 + firstSecondRatio,
-    rotation: initialRotation,
-  };
-  const second = {
-    arc: Math.random() * 50 + (150 - firstSecondRatio),
-    rotation: first.rotation + first.arc + spaceBetweenArcs,
-  };
-  const third = {
-    arc: 360 - second.arc - first.arc - 3 * spaceBetweenArcs,
-    rotation: second.rotation + second.arc + spaceBetweenArcs,
-  };
-  return [first, second, third];
+  const first = Math.random() * 50 + firstSecondRatio;
+  const second = Math.random() * 50 + (150 - firstSecondRatio);
+  return [first, second];
+};
+
+const getRotation = () => {
+  return Math.random() * 120 - 60;
 };
 
 const Donut = () => {
-  const [values, setValues] = useState(generateValues());
-  const setNewDonut = () => setValues(generateValues());
+  const initialValues = generateValues();
+  const alpha = useSharedValue(initialValues[0]);
+  const beta = useSharedValue(initialValues[1]);
+  const gamma = useDerivedValue(
+    () => 360 - alpha.value - beta.value - 3 * spaceBetweenArcs
+  );
+  const rotation = useSharedValue(getRotation());
+
+  const setNewDonut = () => {
+    const values = generateValues();
+    const animationConfig = {
+      duration: 800,
+    };
+    alpha.value = withTiming(values[0], animationConfig);
+    beta.value = withTiming(values[1], animationConfig);
+    rotation.value = withTiming(getRotation(), animationConfig);
+  };
+
   return (
     <View>
-      <Arc
+      <ArcBase
         color="#8EA604"
         diameter={200}
         width={20}
-        arcSweepAngle={values[0].arc}
+        arcSweepAngle={alpha}
         lineCap="round"
-        rotation={values[0].rotation}
-        initialAnimation={false}
+        rotation={rotation}
         style={{ paddingBottom: 20 }}
       />
-      <Arc
+      <ArcBase
         color="#FB6107"
         diameter={200}
         width={20}
-        arcSweepAngle={values[1].arc}
+        arcSweepAngle={beta}
         lineCap="round"
-        rotation={values[1].rotation}
+        rotation={useDerivedValue(
+          () => rotation.value + alpha.value + spaceBetweenArcs
+        )}
         style={styles.absolute}
-        initialAnimation={false}
       />
-      <Arc
+      <ArcBase
         color="#FEC601"
         diameter={200}
         width={20}
-        arcSweepAngle={values[2].arc}
+        arcSweepAngle={gamma}
         lineCap="round"
-        rotation={values[2].rotation}
+        rotation={useDerivedValue(
+          () => rotation.value + alpha.value + beta.value + 2 * spaceBetweenArcs
+        )}
         style={styles.absolute}
-        initialAnimation={false}
       />
       <Button title="Animate Arc!" onPress={setNewDonut} />
     </View>
