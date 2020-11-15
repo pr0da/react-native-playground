@@ -21,7 +21,7 @@ export type Props = {
   style?: StyleProp<ViewStyle>;
 };
 
-export default function AnimatedArc(props: Props) {
+export default function ReanimatedArc(props: Props) {
   const {
     diameter,
     width,

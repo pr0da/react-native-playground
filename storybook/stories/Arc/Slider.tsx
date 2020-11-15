@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import ArcBase from './ArcBase';
+import ReanimatedArc from './ReanimatedArc';
 import Animated, {
   useAnimatedGestureHandler,
   useDerivedValue,
@@ -47,7 +47,7 @@ const Slider: React.FC = () => {
   return (
     <View>
       <View style={styles.container}>
-        <ArcBase
+        <ReanimatedArc
           color="lightgrey"
           diameter={containerWidth}
           width={15}
@@ -57,7 +57,7 @@ const Slider: React.FC = () => {
           style={styles.absolute}
         />
         <Animated.View style={[styles.absolute, animatedStyle]}>
-          <ArcBase
+          <ReanimatedArc
             color="yellow"
             diameter={containerWidth}
             width={15}

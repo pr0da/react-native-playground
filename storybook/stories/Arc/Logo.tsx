@@ -6,8 +6,7 @@ import {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-
-import ArcBase from './ArcBase';
+import ReanimatedArc from './ReanimatedArc';
 
 const App = () => {
   const arcAngle = useSharedValue(-90);
@@ -26,7 +25,7 @@ const App = () => {
 
   return (
     <View style={styles.wrapper}>
-      <ArcBase
+      <ReanimatedArc
         color="#121330"
         diameter={200}
         width={20}
@@ -35,7 +34,7 @@ const App = () => {
         rotation={rotations[0]}
         style={styles.arc1}
       />
-      <ArcBase
+      <ReanimatedArc
         color="#3eefd8"
         diameter={140}
         width={20}
@@ -44,7 +43,7 @@ const App = () => {
         rotation={rotations[1]}
         style={styles.arc2}
       />
-      <ArcBase
+      <ReanimatedArc
         color="#121330"
         diameter={80}
         width={20}

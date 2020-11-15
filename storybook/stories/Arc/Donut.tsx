@@ -5,7 +5,7 @@ import {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import ArcBase from './ArcBase';
+import ReanimatedArc from './ReanimatedArc';
 
 const spaceBetweenArcs = 20;
 const generateValues = () => {
@@ -40,7 +40,7 @@ const Donut = () => {
 
   return (
     <View>
-      <ArcBase
+      <ReanimatedArc
         color="#8EA604"
         diameter={200}
         width={20}
@@ -49,7 +49,7 @@ const Donut = () => {
         rotation={rotation}
         style={{ paddingBottom: 20 }}
       />
-      <ArcBase
+      <ReanimatedArc
         color="#FB6107"
         diameter={200}
         width={20}
@@ -60,7 +60,7 @@ const Donut = () => {
         )}
         style={styles.absolute}
       />
-      <ArcBase
+      <ReanimatedArc
         color="#FEC601"
         diameter={200}
         width={20}
