@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, View, StyleSheet } from 'react-native';
-import ArcBase from './ArcBase';
+import ReanimatedArc from './ReanimatedArc';
 import {
   Easing,
   useDerivedValue,
@@ -38,14 +38,14 @@ const Stopwatch = () => {
   return (
     <View>
       <View style={[styles.container]}>
-        <ArcBase
+        <ReanimatedArc
           color="lightgrey"
           diameter={195}
           width={10}
           arcSweepAngle={360}
           lineCap="round"
         />
-        <ArcBase
+        <ReanimatedArc
           color="#8EA604"
           diameter={200}
           width={16}

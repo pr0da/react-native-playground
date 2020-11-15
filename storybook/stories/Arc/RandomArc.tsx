@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Button, View } from 'react-native';
-import ArcBase from './ArcBase';
-import Reanimated, {
+import ReanimatedArc from './ReanimatedArc';
+import {
   Easing,
   useDerivedValue,
   useSharedValue,
@@ -20,7 +20,7 @@ const RandomArc = () => {
 
   return (
     <>
-      <ArcBase
+      <ReanimatedArc
         color="coral"
         diameter={200}
         width={20}
